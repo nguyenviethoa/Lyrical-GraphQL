@@ -4,6 +4,7 @@ import { ApolloClient } from 'apollo-client';
 import { ApolloProvider } from 'react-apollo';
 import { HttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
+import { SongList } from './components/SongList';
 
 const client = new ApolloClient({
 	// By default, this client will send queries to the
@@ -13,7 +14,11 @@ const client = new ApolloClient({
 });
 
 const Root = () => {
-  return <div>Lyrical</div>
+  return (
+  		<ApolloProvider client={client}>
+  			<SongList />
+  		</ApolloProvider>
+  	)
 };
 
 ReactDOM.render(
