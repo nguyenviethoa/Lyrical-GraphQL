@@ -7,6 +7,7 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
 import { Switch, Route, BrowserRouter as Router, Link } from 'react-router-dom';
 import { SongList } from './components/SongList';
 import { Home } from './components/Home';
+import { CreateSong } from './components/SongList/CreateSong';
 
 const client = new ApolloClient({
 	// By default, this client will send queries to the
@@ -18,14 +19,18 @@ const client = new ApolloClient({
 const Root = () => {
   return (
   		<ApolloProvider client={client}>
-
-  			<Router>
-  				<div>
-					<Route exact path='/' component={Home} />
-					<Route path='/songs' component={SongList} />
+				<div>
+				<Router>
+					<Switch>
+						<Route exact path='/' component={Home} />
+						<Switch>
+							<Route exact path='/songs' component={SongList} />
+							<Route path='/songs/new' component={CreateSong} />
+						</Switch>	
+					</Switch>
+					
+				</Router>
 				</div>
-			</Router>
-
   		</ApolloProvider>
   	);
 };

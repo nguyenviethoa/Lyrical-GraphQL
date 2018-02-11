@@ -16,6 +16,7 @@ export class Home extends Component {
 				Home Page
 			</ul>	
 			<Link to='/songs'> go to song list </Link>
+			<Link to='/songs/new'> create new songs </Link>
 		</div>
 		);
 	}

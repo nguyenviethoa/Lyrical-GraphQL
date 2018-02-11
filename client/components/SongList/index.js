@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
+import { Link } from 'react-router-dom';
 import { SongsQuery } from './queries';
+import { DeleteSongMutation } from './mutations';
 
 @graphql(SongsQuery, { name: "SongsQuery" })
+@graphql(DeleteSongMutation)
 export class SongList extends Component {
 
 	constructor(props) {
@@ -12,11 +15,25 @@ export class SongList extends Component {
 		}
 	}
 
+	onDeletePressed(id) {
+		this.props.mutate({ 
+			variables: { id },
+			refetchQueries: [{ query: SongsQuery }]			
+		})
+	}
+
 	renderSongs() {
 		return this.props.SongsQuery.songs.map( (song) => {
 			return (
 				<li key={song.id} className="collection-item">
 					{song.title}
+
+					<i
+						className="material-icons"
+						onClick={() => this.onDeletePressed(song.id)}
+					>
+						delete
+					</i>	
 				</li>	
 			);
 		});
@@ -31,9 +48,18 @@ export class SongList extends Component {
 		console.log(this.props.SongsQuery);
 	
 		return (
-			<ul className="collection">
-				{this.renderSongs()}
-			</ul>	
+			<div>
+				<label> list of songs </label>
+				<ul className="collection">
+					{this.renderSongs()}
+				</ul>
+				<Link
+					to="/songs/new"
+					className="btn-floating btn-large red right"
+				>
+					<i className="material-icons">add</i>
+				</Link>	
+			</div>	
 		);
 	}
 }
