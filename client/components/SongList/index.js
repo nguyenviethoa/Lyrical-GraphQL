@@ -25,8 +25,14 @@ export class SongList extends Component {
 	renderSongs() {
 		return this.props.SongsQuery.songs.map( (song) => {
 			return (
-				<li key={song.id} className="collection-item">
+				<li 
+					key={song.id} 
+					className="collection-item"
+					onClick={() => {}}
+				>
 					{song.title}
+
+					<Link to={`/songs/${song.id}`}>{song.title}</Link>
 
 					<i
 						className="material-icons"

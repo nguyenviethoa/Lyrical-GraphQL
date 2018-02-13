@@ -1,3 +1,4 @@
+import './style/style.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { ApolloClient } from 'apollo-client';
@@ -8,6 +9,8 @@ import { Switch, Route, BrowserRouter as Router, Link } from 'react-router-dom';
 import { SongList } from './components/SongList';
 import { Home } from './components/Home';
 import { CreateSong } from './components/SongList/CreateSong';
+import { SongDetail } from './components/SongList/SongDetail';
+
 
 const client = new ApolloClient({
 	// By default, this client will send queries to the
@@ -26,6 +29,7 @@ const Root = () => {
 						<Switch>
 							<Route exact path='/songs' component={SongList} />
 							<Route path='/songs/new' component={CreateSong} />
+							<Route path='/songs/:id' component={SongDetail} />
 						</Switch>	
 					</Switch>
 					
