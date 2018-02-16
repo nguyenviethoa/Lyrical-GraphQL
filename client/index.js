@@ -5,7 +5,7 @@ import { ApolloClient } from 'apollo-client';
 import { ApolloProvider } from 'react-apollo';
 import { HttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
-import { Switch, Route, BrowserRouter as Router, Link } from 'react-router-dom';
+import { Switch, Route, BrowserRouter as Router, Link, HashRouter } from 'react-router-dom';
 import { SongList } from './components/SongList';
 import { Home } from './components/Home';
 import { CreateSong } from './components/SongList/CreateSong';
@@ -16,14 +16,16 @@ const client = new ApolloClient({
 	// By default, this client will send queries to the
   //  `/graphql` endpoint on the same host
   link: new HttpLink(),
-  cache: new InMemoryCache()
+  cache: new InMemoryCache({
+		dataIdFromObject: object => object.id || null
+	})
 });
 
 const Root = () => {
   return (
   		<ApolloProvider client={client}>
 				<div>
-				<Router>
+				<HashRouter>
 					<Switch>
 						<Route exact path='/' component={Home} />
 						<Switch>
@@ -33,7 +35,7 @@ const Root = () => {
 						</Switch>	
 					</Switch>
 					
-				</Router>
+				</HashRouter>
 				</div>
   		</ApolloProvider>
   	);
