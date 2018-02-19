@@ -32,7 +32,9 @@
     "html-webpack-plugin": "^2.26.0",
     "lodash": "^4.17.4",
     "mongoose": "^4.7.8",
+    "node-sass": "^4.7.2",
     "nodemon": "*",
+    "normalize.css": "^8.0.0",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "react": "16.2.0",
@@ -41,6 +43,7 @@
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
     "react-router-native": "^4.2.0",
+    "sass-loader": "^6.0.6",
     "style-loader": "^0.19.1",
     "webpack": "^3.10.0",
     "webpack-dev-middleware": "^2.0.4"

@@ -54,7 +54,7 @@ export class SongList extends Component {
 		console.log(this.props.SongsQuery);
 	
 		return (
-			<div>
+			<div className="header">
 				<label> list of songs </label>
 				<ul className="collection">
 					{this.renderSongs()}
